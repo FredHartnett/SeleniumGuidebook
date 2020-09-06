@@ -1,5 +1,5 @@
-/target/surefire-reports/tests.LoginTest.txt
-/target/surefire-reports/TEST-tests.LoginTest.xml
+/target/surefire-reports/tests.TestLogin.txt
+/target/surefire-reports/TEST-tests.TestLogin.xml
 /SeleniumGuidebook.iml
 /.idea/misc.xml
 /target/test-classes/tests/LoginTest.class
