@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageobjects.Login;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -27,6 +28,14 @@ public class TestLogin {
 
         assertTrue(login.successMessagePresent(),
                 "success message not present");
+    }
+
+    @Test
+    public void failed() {
+        login.with("tomsmith", "bad password");
+
+        assertFalse(login.successMessagePresent(),
+                "failure message wasn't present after providing bogus credentials");
     }
 
     @AfterEach

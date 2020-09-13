@@ -4,28 +4,37 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class Login {
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-    private WebDriver driver;
+public class Login extends Base {
+
     By usernameLocator = By.id("username");
     By passwordLocator = By.id("password");
+    By loginFormLocator = By.id("login");
     By submitButton = By.cssSelector("button");
     By successMessageLocator = By.cssSelector(".flash.success");
+    By failureMessageLocator = By.cssSelector(".flash.error");
 
     public Login(WebDriver driver) {
-        this.driver = driver;
-        driver.get("http://the-internet.herokuapp.com/login");
+        super(driver);
+        visit("http://the-internet.herokuapp.com/login");
+
+        assertTrue(isDisplayed(loginFormLocator),
+                "The login form is not present");
     }
 
     public void with(String username, String password) {
-        driver.findElement(usernameLocator).sendKeys("tomsmith");
-        driver.findElement(passwordLocator).sendKeys("SuperSecretPassword!");
+        type(username,usernameLocator);
+        type(password,passwordLocator);
 
-        WebElement button = driver.findElement(submitButton);
-        button.click();
+        click(submitButton);
     }
 
     public Boolean successMessagePresent() {
-        return driver.findElement(successMessageLocator).isDisplayed();
+        return isDisplayed(successMessageLocator);
+    }
+
+    public Boolean failureMessagePresent() {
+        return isDisplayed(failureMessageLocator);
     }
 }
