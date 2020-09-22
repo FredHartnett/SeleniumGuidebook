@@ -2,11 +2,10 @@ package pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class Login extends Base {
+public class Login extends BasePage {
 
     By usernameLocator = By.id("username");
     By passwordLocator = By.id("password");
