@@ -9,21 +9,19 @@ import pageobjects.DynamicLoading;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestDynamicLoading {
+public class TestDynamicLoading extends BaseTest {
 
-    private WebDriver driver;
     private DynamicLoading dynamicLoading;
 
     @BeforeEach
     public void setUp() {
-        driver = new ChromeDriver();
         dynamicLoading = new DynamicLoading(driver);
     }
 
     @Test
     public void hiddenElementLoads() {
         dynamicLoading.loadExample("1");
-        System.out.println("$$$$$$$this is the 1st test");
+
         assertTrue(dynamicLoading.finishTextPresent(),
                 "finish text didn't display after loading");
     }
@@ -31,13 +29,9 @@ public class TestDynamicLoading {
     @Test
     public void elementAppears() {
         dynamicLoading.loadExample("2");
-        System.out.println("$$$$$$$$$this is the 2nd test");
+
         assertTrue(dynamicLoading.finishTextPresent(),
                 "finish text didn't render after loading");
     }
 
-    @AfterEach
-    public void tearDown() {
-        driver.quit();
-    }
 }

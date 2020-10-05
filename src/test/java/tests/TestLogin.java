@@ -11,14 +11,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class TestLogin {
+public class TestLogin extends BaseTest {
 
-    private WebDriver driver;
     private Login login;
 
     @BeforeEach
     public void setUp() {
-        driver = new ChromeDriver();
         login = new Login(driver);
     }
 
@@ -38,8 +36,4 @@ public class TestLogin {
                 "failure message wasn't present after providing bogus credentials");
     }
 
-    @AfterEach
-    public void tearDown() {
-        driver.quit();
-    }
 }
