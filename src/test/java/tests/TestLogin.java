@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.After;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,12 +12,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class TestLogin extends BaseTest {
+public class TestLogin {
 
+    private WebDriver driver;
     private Login login;
 
     @BeforeEach
     public void setUp() {
+        System.setProperty("webdriver.chrome.driver","/Users/fredhartnett/ChromeDriverFile/chromedriver");
+        driver = new ChromeDriver();
         login = new Login(driver);
     }
 
@@ -29,11 +33,19 @@ public class TestLogin extends BaseTest {
     }
 
     @Test
-    public void failed() {
+    public void failed() throws InterruptedException {
         login.with("tomsmith", "bad password");
+
+        try{
+            Thread.sleep(2000); }
+        catch(InterruptedException ie){ }
 
         assertFalse(login.successMessagePresent(),
                 "failure message wasn't present after providing bogus credentials");
+    }
+    @AfterEach
+    public void tearDown() {
+        driver.quit();
     }
 
 }

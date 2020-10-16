@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static tests.Config.baseUrl;
+
 public class BasePage {
 
     private WebDriver driver;
