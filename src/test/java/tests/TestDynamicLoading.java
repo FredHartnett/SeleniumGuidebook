@@ -1,6 +1,7 @@
 package tests;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,15 +18,16 @@ public class TestDynamicLoading {
 
     @BeforeEach
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver","/Users/fredhartnett/ChromeDriverFile/chromedriver");
+        System.setProperty("webdriver.chrome.driver",
+                "/Users/fredhartnett/drivers/chromedriver");
         driver = new ChromeDriver();
         dynamicLoading = new DynamicLoading(driver);
+//        try{Thread.sleep(2000);} catch(InterruptedException e) { /* do nothing */};
     }
 
     @Test
     public void hiddenElementLoads() {
         dynamicLoading.loadExample("1");
-
         assertTrue(dynamicLoading.finishTextPresent(),
                 "finish text didn't display after loading");
     }
@@ -33,7 +35,6 @@ public class TestDynamicLoading {
     @Test
     public void elementAppears() {
         dynamicLoading.loadExample("2");
-
         assertTrue(dynamicLoading.finishTextPresent(),
                 "finish text didn't render after loading");
     }
@@ -42,5 +43,4 @@ public class TestDynamicLoading {
     public void tearDown() {
         driver.quit();
     }
-
 }

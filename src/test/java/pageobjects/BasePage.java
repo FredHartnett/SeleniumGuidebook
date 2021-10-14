@@ -6,10 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-import static tests.Config.baseUrl;
-
 public class BasePage {
 
     private WebDriver driver;
@@ -35,26 +31,21 @@ public class BasePage {
     }
 
     public Boolean isDisplayed(By locator) {
-
         try {
             return find(locator).isDisplayed();
         } catch (org.openqa.selenium.NoSuchElementException exception) {
             return false;
         }
-
     }
 
     public Boolean isDisplayed(By locator, Integer timeout) {
-
         try {
-            WebDriverWait wait;
-            wait = new WebDriverWait(driver, timeout);
-
+            WebDriverWait wait = new WebDriverWait(driver, timeout);
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+
         } catch (org.openqa.selenium.TimeoutException exception) {
             return false;
         }
         return true;
-
     }
 }
