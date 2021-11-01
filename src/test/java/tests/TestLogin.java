@@ -2,15 +2,14 @@ package tests;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageobjects.Login;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 
 public class TestLogin {
@@ -18,7 +17,7 @@ public class TestLogin {
     private WebDriver driver;
     private Login login;
 
-    @BeforeEach
+    @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver",
                 "/Users/fredhartnett/drivers/chromedriver");
@@ -30,16 +29,19 @@ public class TestLogin {
     @Test
     public void succeeded() {
         login.with("tomsmith","SuperSecretPassword!");
-        assertTrue(login.successMessagePresent(),"success message not present");
+        assertTrue("success message not present", login.successMessagePresent());
     }
 
     @Test
     public void failed() {
         login.with("tomsmith","badpassword");
-        assertFalse(login.successMessagePresent(),"failure message was not present after providing bogus credentials");
+        assertTrue("failure message wasn't present after providing bogus credentials",
+                login.failureMessagePresent());
+        assertFalse("success message was present after providing bogus credentials",
+                login.successMessagePresent());
     }
 
-    @AfterEach
+    @After
     public void tearDown() {
         driver.quit();
     }

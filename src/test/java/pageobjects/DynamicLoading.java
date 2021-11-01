@@ -13,8 +13,7 @@ public class DynamicLoading extends BasePage {
     }
 
     public void loadExample(String exampleNumber) {
-        visit("http://the-internet.herokuapp.com/dynamic_loading/" +
-                exampleNumber);
+        visit("http://the-internet.herokuapp.com/dynamic_loading/" + exampleNumber);
  //       visit("/dynamic_loading/" + exampleNumber);
         click(startButton);
     }

@@ -2,21 +2,21 @@ package tests;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageobjects.DynamicLoading;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertTrue;
+
 
 public class TestDynamicLoading {
 
     private WebDriver driver;
     private DynamicLoading dynamicLoading;
 
-    @BeforeEach
+    @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver",
                 "/Users/fredhartnett/drivers/chromedriver");
@@ -28,18 +28,18 @@ public class TestDynamicLoading {
     @Test
     public void hiddenElementLoads() {
         dynamicLoading.loadExample("1");
-        assertTrue(dynamicLoading.finishTextPresent(),
-                "finish text didn't display after loading");
+        assertTrue("finish text didn't display after loading",
+                dynamicLoading.finishTextPresent());
     }
 
     @Test
     public void elementAppears() {
         dynamicLoading.loadExample("2");
-        assertTrue(dynamicLoading.finishTextPresent(),
-                "finish text didn't render after loading");
+        assertTrue("finish text didn't display after loading",
+                dynamicLoading.finishTextPresent());
     }
 
-    @AfterEach
+    @After
     public void tearDown() {
         driver.quit();
     }

@@ -2,7 +2,7 @@ package pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 public class Login extends BasePage {
 
@@ -18,8 +18,7 @@ public class Login extends BasePage {
     public Login(WebDriver driver) {
         super(driver);
         visit("http://the-internet.herokuapp.com/login");
-        assertTrue(driver.findElement(loginFormLocator).isDisplayed(),
-                "The login form is not present");
+        assertTrue("The login form is not present", isDisplayed(loginFormLocator));
     }
 
     public void with(String username, String password) {
