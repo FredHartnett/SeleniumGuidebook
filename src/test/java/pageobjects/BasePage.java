@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static tests.Config.baseUrl;
+
 public class BasePage {
 
     private WebDriver driver;
@@ -13,9 +15,17 @@ public class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
     }
+//  this was the old method before Config.java
+//    public void visit(String url) {
+//        driver.get(url);
+//    }
 
     public void visit(String url) {
-        driver.get(url);
+        if(url.contains("http")) {
+            driver.get(url);
+        } else {
+            driver.get(baseUrl + url);
+        }
     }
 
     public WebElement find(By locator) {

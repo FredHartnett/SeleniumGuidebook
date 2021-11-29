@@ -17,7 +17,9 @@ public class Login extends BasePage {
 
     public Login(WebDriver driver) {
         super(driver);
-        visit("http://the-internet.herokuapp.com/login");
+//  next line was used before Config.java
+//        visit("http://the-internet.herokuapp.com/login");
+        visit("/login");
         assertTrue("The login form is not present", isDisplayed(loginFormLocator));
     }
 

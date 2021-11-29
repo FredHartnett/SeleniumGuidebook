@@ -1,28 +1,24 @@
 package tests;
 
-import org.junit.After;
 import org.junit.Before;
-
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pageobjects.DynamicLoading;
-
 import static org.junit.Assert.assertTrue;
 
+public class TestDynamicLoading extends BaseTest {
 
-public class TestDynamicLoading {
-
-    private WebDriver driver;
+//    WebDriver commented because of BaseTest class
+//    private WebDriver driver;
     private DynamicLoading dynamicLoading;
 
     @Before
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver",
-                "/Users/fredhartnett/drivers/chromedriver");
-        driver = new ChromeDriver();
+//      setProperty and driver commented because of BaseTest
+//      System.setProperty("webdriver.chrome.driver",
+//              "/Users/fredhartnett/drivers/chromedriver");
+//      driver = new ChromeDriver();
         dynamicLoading = new DynamicLoading(driver);
-//        try{Thread.sleep(2000);} catch(InterruptedException e) { /* do nothing */};
+
     }
 
     @Test
@@ -39,8 +35,9 @@ public class TestDynamicLoading {
                 dynamicLoading.finishTextPresent());
     }
 
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
+//    Next method commented because of BaseTest
+//    @After
+//    public void tearDown() {
+//        driver.quit();
+//    }
 }
