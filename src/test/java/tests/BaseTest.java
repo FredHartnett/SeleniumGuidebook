@@ -4,6 +4,11 @@ import org.junit.Rule;
 import org.junit.rules.ExternalResource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.sql.Driver;
+
+import static tests.Config.browser;
 
 public class BaseTest {
 
@@ -14,9 +19,21 @@ public class BaseTest {
 
         @Override
         protected void before() throws Throwable {
-            System.setProperty("webdriver.chrome.driver",
-                    "/Users/fredhartnett/drivers/chromedriver");
-            driver = new ChromeDriver();
+            if(browser.equals("chrome")) {
+                System.setProperty("webdriver.chrome.driver",
+                        System.getProperty("user.dir") + "/vendor/chromedriver");
+                driver = new ChromeDriver();
+            }
+            else if(browser.equals("firefox")) {
+                System.setProperty("webdriver.gecko.driver",
+                        System.getProperty("user.dir") + "/vendor/geckodriver");
+                driver = new FirefoxDriver();
+            }
+
+            //Next chunk of code for the driver has been replaced with the above code
+//            System.setProperty("webdriver.chrome.driver",
+//                    "/Users/fredhartnett/drivers/chromedriver");
+//            driver = new ChromeDriver();
         }
 
         @Override
